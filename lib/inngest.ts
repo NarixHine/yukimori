@@ -8,7 +8,7 @@ const inngest = new Inngest({
 
 export const oyasumi = inngest.createFunction(
     { name: 'Oyasumi Note' },
-    { cron: 'TZ=Asia/Japan 0 23 * * *' },
+    { cron: 'TZ=Asia/Tokyo 0 23 * * *' },
     async () => {
         const cli = new api.APIClient({
             origin: 'https://misskey.cloud',
