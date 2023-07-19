@@ -8,10 +8,10 @@ const inngest = new Inngest({
 
 export const oyasumi = inngest.createFunction(
     { name: 'Oyasumi Note' },
-    { cron: 'TZ=Asia/Tokyo 0 23 * * *' },
+    { cron: 'TZ=Asia/Tokyo 50 23 * * *' },
     async () => {
         const cli = new api.APIClient({
-            origin: 'https://misskey.cloud',
+            origin: 'https://misskey.dev',
             credential: process.env.MISSKEY_TOKEN
         })
         const season = Math.floor((new Date().getMonth() - 2) / 3) % 4 as 0 | 1 | 2 | 3
