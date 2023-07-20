@@ -8,12 +8,12 @@ export default function Home() {
       <br></br>
 
       <div className='w-2/3 mx-auto' style={{ minWidth: 280 }}>
-        <iframe src='https://missbed.narix.link/timeline/misskey.dev/9hd0tnf1oo' width={'100%'} height={1000}></iframe>
+        <iframe src='https://missbed.narix.link/timeline/submarin.online/9hdihe2rmm' width={'100%'} height={1000}></iframe>
       </div>
       <br></br>
 
       <footer className='text-center text-slate-700 align-middle'>
-        Live on <a target='_blank' rel='noreferrer' href='https://misskey.dev/@yukimori' className='underline'>Misskey</a>
+        Live on <a target='_blank' rel='noreferrer' href='https://submarin.online/@yukimori' className='underline'>Submarin</a>
         <br></br>
         Timeline Embedded with <a target='_blank' rel='noreferrer' href='https://missbed.narix.link/' className='underline'>Missbed</a>
         <br></br>
