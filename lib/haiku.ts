@@ -94,8 +94,8 @@ const haikus = [[
     ['雪だるま', '星のおしゃべり', 'ぺちゃくちゃと']
 ]]
 
-const randomHaiku = (season: 0 | 1 | 2 | 3) => {
-    const matchedHaikus = haikus[season]
+const randomHaiku = (season?: 0 | 1 | 2 | 3) => {
+    const matchedHaikus = haikus[season ? season : Math.floor(Math.random() * 4)]
     return matchedHaikus[Math.floor(Math.random() * matchedHaikus.length)]
 }
 

@@ -1,20 +1,20 @@
 import { Inngest } from 'inngest'
 import { api } from 'misskey-js'
 import randomHaiku from './haiku'
+import getSeasonProgress, { getSeason } from './season'
 
 const inngest = new Inngest({
     name: 'Yukimori',
 })
 
-const note = async (hashtag: string, month = new Date().getMonth()) => {
+const note = async (hashtag: string, date?: Date) => {
     const cli = new api.APIClient({
+        credential: process.env.MISSKEY_TOKEN,
         origin: 'https://submarin.online',
-        credential: process.env.MISSKEY_TOKEN
     })
-    // Spring - Feb. ~ Apr.
-    const season = Math.floor(month === 0 ? 3 : (month - 1) / 3) % 4 as 0 | 1 | 2 | 3
+    const { progress, bar } = getSeasonProgress()
     await cli.request('notes/create', {
-        text: `#${hashtag}\n> ${randomHaiku(season).join('\n> ')}`
+        text: `#${hashtag}\n> ${date ? randomHaiku(getSeason(date)).join('\n> ') : randomHaiku().join('\n> ')}\n${bar}\n${progress}`
     })
 }
 
@@ -22,7 +22,7 @@ export const ohayou = inngest.createFunction(
     { name: 'Ohayou Note' },
     { cron: 'TZ=Asia/Tokyo 30 7 * * *' },
     async () => {
-        await note('おはよう')
+        await note('おはよう', new Date())
     }
 )
 
@@ -30,7 +30,7 @@ export const oyasumi = inngest.createFunction(
     { name: 'Oyasumi Note' },
     { cron: 'TZ=Asia/Tokyo 30 23 * * *' },
     async () => {
-        await note('おやすみ', Math.floor(Math.random() * 12))
+        await note('おやすみ')
     }
 )
 
