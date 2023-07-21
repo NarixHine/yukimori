@@ -14,7 +14,7 @@ const note = async (hashtag: string, date?: Date) => {
     })
     const { progress, bar } = getSeasonProgress()
     await cli.request('notes/create', {
-        text: `#${hashtag}\n> ${date ? randomHaiku(getSeason(date)).join('\n> ') : randomHaiku().join('\n> ')}\n${bar}\n${progress}`
+        text: `#${hashtag}\n> ${date ? randomHaiku(getSeason(date)).join('\n> ') : randomHaiku().join('\n> ')}\n${bar}\n<center>${progress}</center>`
     })
 }
 
