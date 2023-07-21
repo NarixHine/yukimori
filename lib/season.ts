@@ -32,7 +32,7 @@ function getSeasonProgress() {
     const restEmojis = Math.round(restLength / seasonLength * 12)
     const pastPercentage = 100 - Math.floor(restLength / seasonLength * 100)
     return {
-        progress: `${seasonKanji[season]}は、\`${pastPercentage}%\`終わる。`,
+        progress: `${seasonKanji[season]}は、${pastPercentage}% 終わる。`,
         bar: `<center>${'🟥'.repeat(progressLength - restEmojis)}${'🟩'.repeat(restEmojis)}</center>\n`
     }
 }
