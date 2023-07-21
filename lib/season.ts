@@ -14,13 +14,13 @@ const seasonEmojis = [
 ]
 
 const seasonKanji = [
-    '春', // 春
+    '春',
     '夏',
     '秋',
     '冬'
 ]
 
-const progressLength = 12
+const progressLength = 16
 
 export function getSeason(date: Date) {
     const index = seasonBeginDates.concat(date).sort((first, second) => first.getTime() - second.getTime()).indexOf(date)
@@ -36,11 +36,11 @@ function getSeasonProgress() {
     const season = getSeason(today)
     const seasonLength = dateDiff(seasonBeginDates[season], seasonBeginDates[season + 1])
     const restLength = dateDiff(today, seasonBeginDates[season + 1])
-    const restEmojis = Math.floor(restLength / seasonLength * 12)
+    const restEmojis = Math.round(restLength / seasonLength * 12)
     const pastPercentage = 100 - Math.floor(restLength / seasonLength * 100)
     return {
-        progress: `${seasonKanji[season]}は、${pastPercentage}％終わる。`,
-        bar: `┌${'————'.repeat(progressLength)}┐\n｜${seasonEmojis[season][0].repeat(progressLength - restEmojis)}${seasonEmojis[season][1].repeat(restEmojis)}｜\n└${'————'.repeat(progressLength)}┘`
+        progress: `${seasonKanji[season]}は、\`${pastPercentage}%\`終わる。`,
+        bar: `<center>${seasonEmojis[season][0].repeat(progressLength - restEmojis)}${seasonEmojis[season][1].repeat(restEmojis)}</center>\n`
     }
 }
 
