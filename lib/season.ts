@@ -6,13 +6,6 @@ const seasonBeginDates = [
     new Date(new Date().getFullYear() + 1, 1, 4),
 ]
 
-const seasonEmojis = [
-    [':ha_hiragana:', ':ru_hiragana:'], // 春
-    [':na_hiragana:', ':tsu_hiragana:'],
-    [':a_hiragana:', ':ki_hiragana:'],
-    [':fu_hiragana:', ':yu_hiragana:']
-]
-
 const seasonKanji = [
     '春',
     '夏',
@@ -40,7 +33,7 @@ function getSeasonProgress() {
     const pastPercentage = 100 - Math.floor(restLength / seasonLength * 100)
     return {
         progress: `${seasonKanji[season]}は、\`${pastPercentage}%\`終わる。`,
-        bar: `<center>${seasonEmojis[season][0].repeat(progressLength - restEmojis)}${seasonEmojis[season][1].repeat(restEmojis)}</center>\n`
+        bar: `<center>${'🟥'.repeat(progressLength - restEmojis)}${'🟩'.repeat(restEmojis)}</center>\n`
     }
 }
 
