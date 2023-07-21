@@ -6,7 +6,7 @@ const kiwi = Kiwi_Maru({ subsets: ['latin'], weight: '400' })
 
 export const metadata: Metadata = {
   title: 'ゆきもり',
-  description: 'Misskey Haiku Bot',
+  description: '雪の世を　ぼっと霞んだ　窓曇り',
 }
 
 export default function RootLayout({

@@ -1,7 +1,6 @@
 import getSeasonProgress from '@/lib/season'
 
 export default function Home() {
-  console.log(getSeasonProgress())
   return (
     <main className='p-8 text-center'>
       <h1 className='text-5xl'>
