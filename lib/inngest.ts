@@ -13,10 +13,10 @@ const note = async (hashtag: string, date?: Date) => {
         origin: 'https://submarin.online',
     })
     const { season, percentage, bar, symbols } = getSeasonProgress()
-    const progressBar = `<center>${bar}\n${season}は、\`${percentage}\` 終わる。\n${symbols}</center>`
+    const progressBar = `<center>${bar}\n${season}は、\`${percentage}\` 終わる。\n</center>`
 
     await cli.request('drive/files/upload-from-url', {
-        url: `https://yukimori.narix.link/api/bar?p=${percentage}`
+        url: `https://yukimori.narix.link/api/bar?p=${encodeURIComponent(percentage)}&emoji=${encodeURIComponent(symbols)}`
     })
     const { id } = (await cli.request('drive/files', { limit: 1 }))[0]
     await cli.request('notes/create', {
