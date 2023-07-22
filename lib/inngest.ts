@@ -13,15 +13,22 @@ const note = async (hashtag: string, date?: Date) => {
         origin: 'https://submarin.online',
     })
     const { season, percentage, bar, symbols } = getSeasonProgress()
-    const progressBar = `<center>${bar}\n${season}は、\`${percentage}\` 終わる。${symbols}</center>`
+    const progressBar = `<center>${bar}\n${season}は、\`${percentage}\` 終わる。\n${symbols}</center>`
+
+    await cli.request('drive/files/upload-from-url', {
+        url: `https://yukimori.narix.link/api/bar?p=${percentage}`
+    })
+    const { id } = (await cli.request('drive/files', { limit: 1 }))[0]
     await cli.request('notes/create', {
-        text: `#${hashtag}\n> ${date ? randomHaiku(getSeason(date)).join('\n> ') : randomHaiku().join('\n> ')}\n${progressBar}`
+        text: `#${hashtag}\n> ${date ? randomHaiku(getSeason(date)).join('\n> ') : randomHaiku().join('\n> ')}\n${progressBar}`,
+        fileIds: [id],
+        visibility: 'home'
     })
     const { description } = await cli.request('users/show', {
         userId: '9hdihe2rmm'
     })
     await cli.request('i/update', {
-        description: `${description?.split('<center>')[0]}\n\n${progressBar}`
+        description: `${description?.split('<center>')[0]}\n\n${progressBar}\n`
     })
 }
 

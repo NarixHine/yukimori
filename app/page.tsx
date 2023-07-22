@@ -2,6 +2,7 @@ import getSeasonProgress from '@/lib/season'
 
 export default function Home() {
   const { percentage, season, symbols } = getSeasonProgress()
+  
   return (
     <main className='p-8 text-center'>
       <h1 className='text-5xl'>
