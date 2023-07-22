@@ -12,9 +12,16 @@ const note = async (hashtag: string, date?: Date) => {
         credential: process.env.MISSKEY_TOKEN,
         origin: 'https://submarin.online',
     })
-    const { progress, bar } = getSeasonProgress()
+    const { season, percentage, bar, symbols } = getSeasonProgress()
+    const progressBar = `<center>${bar}\n${season}は、\`${percentage}\` 終わる。${symbols}</center>`
     await cli.request('notes/create', {
-        text: `#${hashtag}\n> ${date ? randomHaiku(getSeason(date)).join('\n> ') : randomHaiku().join('\n> ')}\n${bar}\n<center>${progress}</center>`
+        text: `#${hashtag}\n> ${date ? randomHaiku(getSeason(date)).join('\n> ') : randomHaiku().join('\n> ')}\n${progressBar}`
+    })
+    const { description } = await cli.request('users/show', {
+        userId: '9hdihe2rmm'
+    })
+    await cli.request('i/update', {
+        description: `${description?.split('<center>')[0]}\n\n${progressBar}`
     })
 }
 
