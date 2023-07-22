@@ -28,7 +28,7 @@ const note = async (hashtag: string, date?: Date) => {
         userId: '9hdihe2rmm'
     })
     await cli.request('i/update', {
-        description: `${description?.split('<center>')[0]}\n\n${progressBar}\n`
+        description: `${description?.split('\n\n<center>')[0]}\n\n${progressBar}\n`
     })
 }
 
