@@ -16,9 +16,11 @@ const note = async (hashtag: string, date?: Date) => {
     const progressBar = `<center>${bar}\n${season}は、\`${percentage}\` 終わる。</center>`
 
     await cli.request('drive/files/upload-from-url', {
-        url: `https://yukimori.narix.link/api/bar?p=${encodeURIComponent(percentage)}&emoji=${encodeURIComponent(symbols)}`
+        url: `https://yukimori.narix.link/api/bar?p=${encodeURIComponent(percentage)}&emoji=${encodeURIComponent(symbols)}&season=${season}`,
+        folderId: '9hj4r2i39g',
+        force: true
     })
-    const { id } = (await cli.request('drive/files', { limit: 1 }))[0]
+    const { id } = (await cli.request('drive/files', { limit: 1, folderId: '9hj4r2i39g' }))[0]
     await cli.request('notes/create', {
         text: `#${hashtag}\n> ${date ? randomHaiku(getSeason(date)).join('\n> ') : randomHaiku().join('\n> ')}\n${progressBar}`,
         fileIds: [id],
