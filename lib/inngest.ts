@@ -2,6 +2,7 @@ import { Inngest } from 'inngest'
 import { api } from 'misskey-js'
 import randomHaiku from './haiku'
 import getSeasonProgress, { getSeason } from './season'
+import { setTimeout } from 'timers/promises'
 
 const inngest = new Inngest({
     name: 'Yukimori',
@@ -20,6 +21,7 @@ const note = async (hashtag: string, date?: Date) => {
         folderId: '9hj4r2i39g',
         force: true
     })
+    await setTimeout(1000)
     const { id } = (await cli.request('drive/files', { limit: 1, folderId: '9hj4r2i39g' }))[0]
     await cli.request('notes/create', {
         text: `#${hashtag}\n> ${date ? randomHaiku(getSeason(date)).join('\n> ') : randomHaiku().join('\n> ')}\n${progressBar}`,
