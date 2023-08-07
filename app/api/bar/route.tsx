@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
             backgroundImage: 'linear-gradient(to right top, rgb(255, 228, 230), rgb(204, 251, 241))'
         }}>
             <div style={{ textAlign: 'center', fontSize: 70, color: '#3F2305', paddingLeft: 30 }}>{`${season}。`}</div>
-            <div style={{ backgroundColor: '#B3FFAE', display: 'flex', width: '80%', height: 30 }}>
+            <div style={{ backgroundColor: percentage === '100%' ? '#FF6464' : '#B3FFAE', display: 'flex', width: '80%', height: 30 }}>
                 <div style={{ width: percentage, backgroundColor: '#FF6464' }}></div>
             </div>
             <div style={{ textAlign: 'center', fontSize: 30 }}>{symbols}</div>
